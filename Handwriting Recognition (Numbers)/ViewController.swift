@@ -7,14 +7,67 @@
 //
 
 import UIKit
+import Vision
 
 class ViewController: UIViewController {
 
+    //MARK:- IBOutlets
+    @IBOutlet weak var canvasView: CanvasView!
+    @IBOutlet weak var digitLabel: UILabel!
+    
+    //MARK:- Properties
+    var requests = [VNRequest]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        setupVisionForClassification()
+    }
+    
+    //MARK:- Vision request methods
+    func setupVisionForClassification() {
+        //create a vision model from our coreML model
+        guard let visionModel = try? VNCoreMLModel(for: MNIST().model) else { fatalError("Failed to load Vision ML Model")}
+        
+        //create a classification request for your model
+        let classificationRequest = VNCoreMLRequest(model: visionModel, completionHandler: self.handleClassification)
+        
+        self.requests = [classificationRequest]
+    }
+    
+    func handleClassification(request: VNRequest, error: Error?) {
+        guard let observations = request.results else {
+            print("No results")
+            return
+        }
+        
+        //from the observations, we can get a list of possible classifications discovered for our request
+        //convert each object and adds it to the classification array, filtered by objects with a confidence level of above 80%, mapped to identifer strings
+        
+        let classifcations = observations
+            .compactMap() { $0 as? VNClassificationObservation}
+            .filter() { $0.confidence > 0.8 }
+            .map() {$0.identifier}
+        
+        DispatchQueue.main.async {
+            //update the user interface
+            self.digitLabel.text = classifcations.first //the most accurate digit
+        }
     }
 
+    //MARK:- IBActions
 
+    @IBAction func clearCanvas(_ sender: UIButton) {
+        canvasView.clearCanvas()
+    }
+    
+    @IBAction func beginHandwritingRecognition(_ sender: UIButton) {
+        //begin the recognition process - results are better if we scale the image down and then input it
+        let image = UIImage(view: canvasView)
+    }
+    
+    //MARK:- Image scaling function
+    
+    
 }
 

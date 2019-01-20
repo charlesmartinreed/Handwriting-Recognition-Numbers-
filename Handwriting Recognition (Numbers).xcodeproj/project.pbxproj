@@ -12,6 +12,8 @@
 		8C59F34521F43722009CE57D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C59F34321F43722009CE57D /* Main.storyboard */; };
 		8C59F34721F43724009CE57D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8C59F34621F43724009CE57D /* Assets.xcassets */; };
 		8C59F34A21F43724009CE57D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8C59F34821F43724009CE57D /* LaunchScreen.storyboard */; };
+		8C59F35221F43737009CE57D /* MNIST.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8C59F35121F43737009CE57D /* MNIST.mlmodel */; };
+		8C59F35421F43768009CE57D /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C59F35321F43768009CE57D /* CanvasView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8C59F34621F43724009CE57D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C59F34921F43724009CE57D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8C59F34B21F43724009CE57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8C59F35121F43737009CE57D /* MNIST.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MNIST.mlmodel; sourceTree = "<group>"; };
+		8C59F35321F43768009CE57D /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,9 +60,11 @@
 			children = (
 				8C59F33F21F43722009CE57D /* AppDelegate.swift */,
 				8C59F34121F43722009CE57D /* ViewController.swift */,
+				8C59F35321F43768009CE57D /* CanvasView.swift */,
 				8C59F34321F43722009CE57D /* Main.storyboard */,
 				8C59F34621F43724009CE57D /* Assets.xcassets */,
 				8C59F34821F43724009CE57D /* LaunchScreen.storyboard */,
+				8C59F35121F43737009CE57D /* MNIST.mlmodel */,
 				8C59F34B21F43724009CE57D /* Info.plist */,
 			);
 			path = "Handwriting Recognition (Numbers)";
@@ -135,7 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8C59F35221F43737009CE57D /* MNIST.mlmodel in Sources */,
 				8C59F34221F43722009CE57D /* ViewController.swift in Sources */,
+				8C59F35421F43768009CE57D /* CanvasView.swift in Sources */,
 				8C59F34021F43722009CE57D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
