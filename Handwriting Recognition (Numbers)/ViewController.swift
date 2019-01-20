@@ -64,9 +64,27 @@ class ViewController: UIViewController {
     @IBAction func beginHandwritingRecognition(_ sender: UIButton) {
         //begin the recognition process - results are better if we scale the image down and then input it
         let image = UIImage(view: canvasView)
+        let scaledImage = scaleImage(image: image, toSize: CGSize(width: 28, height: 28))
+        
+        //now that we've got our scaled image, we can pass it to the request handler
+        let imageRequestHandler = VNImageRequestHandler(cgImage: scaledImage.cgImage!, options: [:])
+        
+        //try performing that request
+        do {
+            try imageRequestHandler.perform(self.requests)
+        } catch {
+            print(error)
+        }
     }
     
     //MARK:- Image scaling function
+    func scaleImage(image: UIImage, toSize size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 1.0)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
     
     
 }
